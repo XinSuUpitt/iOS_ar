@@ -7,12 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewController.h"
 
 
-@interface HomeViewController : UITabBarController
+@interface HomeViewController : UITabBarController<UITabBarControllerDelegate>
 {
     CGFloat width;
     CGFloat height;
+    
+    //top bar
+    UIImageView *accountIV;
+    UIImageView *arPageIV;
 }
+
+@property (nonatomic, assign) id<ViewControllerDelegate> viewCtrlDelegate;
 
 @end

@@ -9,13 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <SceneKit/SceneKit.h>
 #import <ARKit/ARKit.h>
-#import "HomeViewController.h"
-#import "AccountViewController.h"
 
 @class HomeViewController;
 @class AccountViewController;
 
-@interface ViewController : UIViewController<UIScrollViewDelegate> {
+@protocol ViewControllerDelegate <NSObject>
+- (void)backToARPageFromHome;
+@end
+
+@interface ViewController : UIViewController<UIScrollViewDelegate, ViewControllerDelegate> {
     CGFloat width;
     CGFloat height;
     

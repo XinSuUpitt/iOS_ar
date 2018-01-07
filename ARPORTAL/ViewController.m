@@ -88,7 +88,7 @@
     [homeIV addGestureRecognizer:homeIVTapGR];
     
     accountIV = [[UIImageView alloc] initWithFrame:CGRectMake(width-paddingLeft-itemSize, itemOriginY, itemSize, itemSize)];
-    [accountIV setImage:[UIImage imageNamed:@"user"]];
+    [accountIV setImage:[UIImage imageNamed:@"account"]];
     accountIV.image = [accountIV.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [accountIV setTintColor:[UIColor whiteColor]];
     [self.view addSubview:accountIV];
@@ -256,16 +256,23 @@
 
 - (void)homeIVTapGRTap
 {
+    if (self.homeCtrl == nil) {
+        self.homeCtrl = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
+    }
     [self.view.superview addSubview:self.homeCtrl.view];
     self.homeCtrl.view.frame = CGRectMake(-width, 0, width, height);
     self.homeCtrl.view.alpha = 0;
     [UIView animateWithDuration:.2 animations:^{
         self.homeCtrl.view.frame = CGRectMake(0, 0, width, height);
+        self.view.frame = CGRectMake(width, 0, width, height);
         self.homeCtrl.view.alpha = 1;
+        self.view.alpha = 0;
     } completion:^(BOOL finish){
         self.homeCtrl.view.frame = CGRectMake(0, 0, width, height);
         self.homeCtrl.view.alpha = 1;
-        [self.view removeFromSuperview];
+        self.view.frame = CGRectMake(width, 0, width, height);
+        self.view.alpha = 0;
+        [self.sceneView.session pause];
     }];
 }
 
@@ -277,10 +284,38 @@
     [UIView animateWithDuration:.2 animations:^{
         self.accountCtrl.view.frame = CGRectMake(0, 0, width, height);
         self.accountCtrl.view.alpha = 1;
+        self.view.frame = CGRectMake(-width, 0, width, height);
+        self.view.alpha = 0;
     } completion:^(BOOL finish){
         self.accountCtrl.view.frame = CGRectMake(0, 0, width, height);
         self.accountCtrl.view.alpha = 1;
-        [self.view removeFromSuperview];
+        self.view.frame = CGRectMake(-width, 0, width, height);
+        self.view.alpha = 0;
+        [self.sceneView.session pause];
+    }];
+}
+
+#pragma mark - view change method
+- (void)backToARPageFromHome
+{
+    self.homeCtrl.view.frame = CGRectMake(0, 0, width, height);
+    self.homeCtrl.view.alpha = 1;
+    self.view.alpha = 0;
+    [UIView animateWithDuration:.2 animations:^{
+        self.homeCtrl.view.frame = CGRectMake(-width, 0, width, height);
+        self.view.frame = CGRectMake(0, 0, width, height);
+        self.homeCtrl.view.alpha = 0;
+        self.view.alpha = 1;
+    } completion:^(BOOL finish){
+        self.homeCtrl.view.frame = CGRectMake(-width, 0, width, height);
+        self.homeCtrl.view.alpha = 0;
+        self.view.frame = CGRectMake(0, 0, width, height);
+        self.view.alpha = 1;
+        NSLog(@"bac to ar page");
+        ARWorldTrackingConfiguration *configuration = [ARWorldTrackingConfiguration new];
+        configuration.planeDetection = ARPlaneDetectionHorizontal;
+        [self.sceneView.session runWithConfiguration: configuration];
+        [self.homeCtrl.view removeFromSuperview];
     }];
 }
 
