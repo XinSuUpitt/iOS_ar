@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "Manager.h"
+#import "HomeViewController.h"
+#import "AccountViewController.h"
 
 @interface ViewController () <ARSCNViewDelegate>
 
@@ -51,6 +53,9 @@
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
+    self.homeCtrl = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
+    self.accountCtrl = [[AccountViewController alloc] initWithNibName:@"AccountViewController" bundle:nil];
+    
     [self initTopBarView];
     
     [self initBlurView];
@@ -63,21 +68,33 @@
     CGFloat itemSize = 36;
     CGFloat itemOriginY = 20 + ([Manager isPhoneX] ? 24 : 0);
     CGFloat paddingLeft = 20;
+    
     addIV = [[UIImageView alloc] initWithFrame:CGRectMake(width/2-itemSize/2, itemOriginY, itemSize, itemSize)];
     [addIV setImage:[UIImage imageNamed:@"plus"]];
     addIV.image = [addIV.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [addIV setTintColor:[UIColor whiteColor]];
     [self.view addSubview:addIV];
+    UITapGestureRecognizer *addIVTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(addIVTapGRTap)];
+    [addIV setUserInteractionEnabled:YES];
+    [addIV addGestureRecognizer:addIVTapGR];
+    
     homeIV = [[UIImageView alloc] initWithFrame:CGRectMake(paddingLeft, itemOriginY, itemSize, itemSize)];
     [homeIV setImage:[UIImage imageNamed:@"home"]];
     homeIV.image = [homeIV.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [homeIV setTintColor:[UIColor whiteColor]];
     [self.view addSubview:homeIV];
+    UITapGestureRecognizer *homeIVTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(homeIVTapGRTap)];
+    [homeIV setUserInteractionEnabled:YES];
+    [homeIV addGestureRecognizer:homeIVTapGR];
+    
     accountIV = [[UIImageView alloc] initWithFrame:CGRectMake(width-paddingLeft-itemSize, itemOriginY, itemSize, itemSize)];
     [accountIV setImage:[UIImage imageNamed:@"user"]];
     accountIV.image = [accountIV.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [accountIV setTintColor:[UIColor whiteColor]];
     [self.view addSubview:accountIV];
+    UITapGestureRecognizer *accountIVTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(accountIVTapGRTap)];
+    [accountIV setUserInteractionEnabled:YES];
+    [accountIV addGestureRecognizer:accountIVTapGR];
     
 }
 
@@ -229,6 +246,42 @@
 - (void)sessionInterruptionEnded:(ARSession *)session {
     // Reset tracking and/or remove existing anchors if consistent tracking is required
     
+}
+
+#pragma mark - tap gesture method
+- (void)addIVTapGRTap
+{
+    
+}
+
+- (void)homeIVTapGRTap
+{
+    [self.view.superview addSubview:self.homeCtrl.view];
+    self.homeCtrl.view.frame = CGRectMake(-width, 0, width, height);
+    self.homeCtrl.view.alpha = 0;
+    [UIView animateWithDuration:.2 animations:^{
+        self.homeCtrl.view.frame = CGRectMake(0, 0, width, height);
+        self.homeCtrl.view.alpha = 1;
+    } completion:^(BOOL finish){
+        self.homeCtrl.view.frame = CGRectMake(0, 0, width, height);
+        self.homeCtrl.view.alpha = 1;
+        [self.view removeFromSuperview];
+    }];
+}
+
+-(void)accountIVTapGRTap
+{
+    [self.view.superview addSubview:self.accountCtrl.view];
+    self.accountCtrl.view.frame = CGRectMake(width, 0, width, height);
+    self.accountCtrl.view.alpha = 0;
+    [UIView animateWithDuration:.2 animations:^{
+        self.accountCtrl.view.frame = CGRectMake(0, 0, width, height);
+        self.accountCtrl.view.alpha = 1;
+    } completion:^(BOOL finish){
+        self.accountCtrl.view.frame = CGRectMake(0, 0, width, height);
+        self.accountCtrl.view.alpha = 1;
+        [self.view removeFromSuperview];
+    }];
 }
 
 @end

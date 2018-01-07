@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <SceneKit/SceneKit.h>
 #import <ARKit/ARKit.h>
+#import "HomeViewController.h"
+#import "AccountViewController.h"
+
+@class HomeViewController;
+@class AccountViewController;
 
 @interface ViewController : UIViewController<UIScrollViewDelegate> {
     CGFloat width;
@@ -27,5 +32,8 @@
     
     SCNNode *sphereNode;
 }
+
+@property (nonatomic, strong) HomeViewController *homeCtrl;
+@property (nonatomic, strong) AccountViewController *accountCtrl;
 
 @end

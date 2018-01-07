@@ -17,6 +17,10 @@
 		18235A881FF86560001900AE /* ARPORTALTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18235A871FF86560001900AE /* ARPORTALTests.m */; };
 		18235A931FF86560001900AE /* ARPORTALUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18235A921FF86560001900AE /* ARPORTALUITests.m */; };
 		18C075C3200202D900E1F1CA /* Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C075C2200202D900E1F1CA /* Manager.m */; };
+		18C075C52002132E00E1F1CA /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C075C42002132E00E1F1CA /* HomeViewController.xib */; };
+		18C075C82002136E00E1F1CA /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C075C72002136E00E1F1CA /* HomeViewController.m */; };
+		18C075CA2002147400E1F1CA /* AccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C075C92002147400E1F1CA /* AccountViewController.xib */; };
+		18C075CD200214EF00E1F1CA /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C075CC200214EF00E1F1CA /* AccountViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +60,12 @@
 		18235A941FF86560001900AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18C075C12002025B00E1F1CA /* Manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Manager.h; sourceTree = "<group>"; };
 		18C075C2200202D900E1F1CA /* Manager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Manager.m; sourceTree = "<group>"; };
+		18C075C42002132E00E1F1CA /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		18C075C62002135F00E1F1CA /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		18C075C72002136E00E1F1CA /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		18C075C92002147400E1F1CA /* AccountViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountViewController.xib; sourceTree = "<group>"; };
+		18C075CB2002149100E1F1CA /* AccountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
+		18C075CC200214EF00E1F1CA /* AccountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,9 +120,15 @@
 				18235A6D1FF86560001900AE /* AppDelegate.m */,
 				18235A6F1FF86560001900AE /* art.scnassets */,
 				18235A711FF86560001900AE /* ViewController.h */,
+				18235A721FF86560001900AE /* ViewController.m */,
 				18C075C12002025B00E1F1CA /* Manager.h */,
 				18C075C2200202D900E1F1CA /* Manager.m */,
-				18235A721FF86560001900AE /* ViewController.m */,
+				18C075C42002132E00E1F1CA /* HomeViewController.xib */,
+				18C075C62002135F00E1F1CA /* HomeViewController.h */,
+				18C075C72002136E00E1F1CA /* HomeViewController.m */,
+				18C075C92002147400E1F1CA /* AccountViewController.xib */,
+				18C075CB2002149100E1F1CA /* AccountViewController.h */,
+				18C075CC200214EF00E1F1CA /* AccountViewController.m */,
 				18235A741FF86560001900AE /* Main.storyboard */,
 				18235A771FF86560001900AE /* Assets.xcassets */,
 				18235A791FF86560001900AE /* LaunchScreen.storyboard */,
@@ -248,7 +264,9 @@
 			files = (
 				18235A701FF86560001900AE /* art.scnassets in Resources */,
 				18235A7B1FF86560001900AE /* LaunchScreen.storyboard in Resources */,
+				18C075C52002132E00E1F1CA /* HomeViewController.xib in Resources */,
 				18235A781FF86560001900AE /* Assets.xcassets in Resources */,
+				18C075CA2002147400E1F1CA /* AccountViewController.xib in Resources */,
 				18235A761FF86560001900AE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,6 +295,8 @@
 				18235A731FF86560001900AE /* ViewController.m in Sources */,
 				18235A7E1FF86560001900AE /* main.m in Sources */,
 				18235A6E1FF86560001900AE /* AppDelegate.m in Sources */,
+				18C075C82002136E00E1F1CA /* HomeViewController.m in Sources */,
+				18C075CD200214EF00E1F1CA /* AccountViewController.m in Sources */,
 				18C075C3200202D900E1F1CA /* Manager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
