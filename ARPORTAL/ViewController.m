@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "Manager.h"
 
 @interface ViewController () <ARSCNViewDelegate>
 
@@ -50,9 +51,34 @@
     width = [UIScreen mainScreen].bounds.size.width;
     height = [UIScreen mainScreen].bounds.size.height;
     
+    [self initTopBarView];
+    
     [self initBlurView];
     
     [self initHorizontalScrollView];
+}
+
+- (void)initTopBarView
+{
+    CGFloat itemSize = 36;
+    CGFloat itemOriginY = 20 + ([Manager isPhoneX] ? 24 : 0);
+    CGFloat paddingLeft = 20;
+    addIV = [[UIImageView alloc] initWithFrame:CGRectMake(width/2-itemSize/2, itemOriginY, itemSize, itemSize)];
+    [addIV setImage:[UIImage imageNamed:@"plus"]];
+    addIV.image = [addIV.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [addIV setTintColor:[UIColor whiteColor]];
+    [self.view addSubview:addIV];
+    homeIV = [[UIImageView alloc] initWithFrame:CGRectMake(paddingLeft, itemOriginY, itemSize, itemSize)];
+    [homeIV setImage:[UIImage imageNamed:@"home"]];
+    homeIV.image = [homeIV.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [homeIV setTintColor:[UIColor whiteColor]];
+    [self.view addSubview:homeIV];
+    accountIV = [[UIImageView alloc] initWithFrame:CGRectMake(width-paddingLeft-itemSize, itemOriginY, itemSize, itemSize)];
+    [accountIV setImage:[UIImage imageNamed:@"user"]];
+    accountIV.image = [accountIV.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [accountIV setTintColor:[UIColor whiteColor]];
+    [self.view addSubview:accountIV];
+    
 }
 
 - (void)initBlurView

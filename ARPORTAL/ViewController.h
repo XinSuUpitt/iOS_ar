@@ -14,6 +14,11 @@
     CGFloat width;
     CGFloat height;
     
+    //top bar
+    UIImageView *homeIV;
+    UIImageView *addIV;
+    UIImageView *accountIV;
+    
     NSArray *imgNameArray;
     NSString *panameraViewImgString;
     

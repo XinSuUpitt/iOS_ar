@@ -16,6 +16,7 @@
 		18235A7E1FF86560001900AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18235A7D1FF86560001900AE /* main.m */; };
 		18235A881FF86560001900AE /* ARPORTALTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18235A871FF86560001900AE /* ARPORTALTests.m */; };
 		18235A931FF86560001900AE /* ARPORTALUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18235A921FF86560001900AE /* ARPORTALUITests.m */; };
+		18C075C3200202D900E1F1CA /* Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C075C2200202D900E1F1CA /* Manager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		18235A8E1FF86560001900AE /* ARPORTALUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARPORTALUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18235A921FF86560001900AE /* ARPORTALUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ARPORTALUITests.m; sourceTree = "<group>"; };
 		18235A941FF86560001900AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18C075C12002025B00E1F1CA /* Manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Manager.h; sourceTree = "<group>"; };
+		18C075C2200202D900E1F1CA /* Manager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Manager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +110,8 @@
 				18235A6D1FF86560001900AE /* AppDelegate.m */,
 				18235A6F1FF86560001900AE /* art.scnassets */,
 				18235A711FF86560001900AE /* ViewController.h */,
+				18C075C12002025B00E1F1CA /* Manager.h */,
+				18C075C2200202D900E1F1CA /* Manager.m */,
 				18235A721FF86560001900AE /* ViewController.m */,
 				18235A741FF86560001900AE /* Main.storyboard */,
 				18235A771FF86560001900AE /* Assets.xcassets */,
@@ -272,6 +277,7 @@
 				18235A731FF86560001900AE /* ViewController.m in Sources */,
 				18235A7E1FF86560001900AE /* main.m in Sources */,
 				18235A6E1FF86560001900AE /* AppDelegate.m in Sources */,
+				18C075C3200202D900E1F1CA /* Manager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
