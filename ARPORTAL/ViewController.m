@@ -303,6 +303,9 @@
     self.homeCtrl.view.frame = CGRectMake(0, 0, width, height);
     self.homeCtrl.view.alpha = 1;
     self.view.alpha = 0;
+    ARWorldTrackingConfiguration *configuration = [ARWorldTrackingConfiguration new];
+    configuration.planeDetection = ARPlaneDetectionHorizontal;
+    [self.sceneView.session runWithConfiguration: configuration];
     [UIView animateWithDuration:.2 animations:^{
         self.homeCtrl.view.frame = CGRectMake(-width, 0, width, height);
         self.view.frame = CGRectMake(0, 0, width, height);
@@ -313,9 +316,6 @@
         self.homeCtrl.view.alpha = 0;
         self.view.frame = CGRectMake(0, 0, width, height);
         self.view.alpha = 1;
-        ARWorldTrackingConfiguration *configuration = [ARWorldTrackingConfiguration new];
-        configuration.planeDetection = ARPlaneDetectionHorizontal;
-        [self.sceneView.session runWithConfiguration: configuration];
         [self.homeCtrl.view removeFromSuperview];
     }];
 }

@@ -17,4 +17,6 @@
 
 @interface Manager : NSObject
 + (BOOL) isPhoneX;
+
+- (void)setShadowOfView:(UIView*)view withOffsetX:(CGFloat)x withOffsetY:(CGFloat)y withBlur:(CGFloat)blur withOpacity:(CGFloat)opacity;
 @end

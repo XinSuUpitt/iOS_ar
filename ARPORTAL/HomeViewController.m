@@ -45,6 +45,10 @@
     CGFloat originY = 20 + ([Manager isPhoneX]?24:0);
     CGFloat iconSize = 28;
     
+    UIImageView *tapBGView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, originY+iconSize+10)];
+    [tapBGView setBackgroundColor:[UIColor whiteColor]];
+    [self.view addSubview:tapBGView];
+    
     accountIV = [[UIImageView alloc] initWithFrame:CGRectMake(10, originY, iconSize, iconSize)];
     [accountIV setImage:[UIImage imageNamed:@"user"]];
     accountIV.image = [accountIV.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -93,7 +97,52 @@
     self.mightLikeViewCtrl.tabBarItem.image = [UIImage imageNamed:@"heart"];
     self.homeMainViewCtrl.tabBarItem.image = [UIImage imageNamed:@"home"];
     self.addNewViewCtrl.tabBarItem.image = [UIImage imageNamed:@"image"];
+    
 }
+
+#pragma mark - UITabBarControllerDelegate
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
+{
+    NSUInteger controllerIndex = [self.viewControllers indexOfObject:viewController];
+    
+    UIView *fromView = tabBarController.selectedViewController.view;
+    UIView *toView = [tabBarController.viewControllers[controllerIndex] view];
+    
+    if (controllerIndex == tabBarController.selectedIndex) {
+        return NO;
+    }
+    
+    CGRect viewSize = fromView.frame;
+    BOOL scrollRight = controllerIndex > tabBarController.selectedIndex;
+    
+    [fromView.superview addSubview:toView];
+    toView.frame = CGRectMake((scrollRight?width:-width), viewSize.origin.y, width, viewSize.size.height);
+    
+    [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        fromView.frame = CGRectMake((scrollRight?-width:width), viewSize.origin.y, width, viewSize.size.height);
+        toView.frame = CGRectMake(0, viewSize.origin.y, width, viewSize.size.height);
+    } completion:^(BOOL finished) {
+        if (finished){
+            tabBarController.selectedIndex = controllerIndex;
+        }
+    }];
+    return NO;
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    if (viewController == self.currentTabVC){
+        return;
+    }
+    self.currentTabVC = viewController;
+}
+
+#pragma mark - homeViewCtrl delegate methods
+-(CGFloat)getTopBarHeight
+{
+    return accountIV.frame.origin.y+accountIV.frame.size.height+11;
+}
+
 
 #pragma mark - tap gesture method
 - (void)arPageIVTapGRTap

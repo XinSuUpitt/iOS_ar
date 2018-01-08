@@ -10,7 +10,7 @@
 #import "ViewController.h"
 
 @protocol HomeViewCtrlDegelate <NSObject>
-
+-(CGFloat)getTopBarHeight;
 @end
 
 @class MightLikeViewController;
@@ -34,5 +34,7 @@
 @property (nonatomic, strong) MightLikeViewController *mightLikeViewCtrl;
 @property (nonatomic, strong) HomeMainViewController *homeMainViewCtrl;
 @property (nonatomic, strong) AddNewViewController *addNewViewCtrl;
+
+@property (nonatomic, assign) UIViewController *currentTabVC;
 
 @end
