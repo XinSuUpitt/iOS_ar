@@ -10,6 +10,9 @@
 #import "HomeViewController.h"
 #import "Manager.h"
 #import "ViewController.h"
+#import "MightLikeViewController.h"
+#import "HomeMainViewController.h"
+#import "AddNewViewController.h"
 
 
 @implementation HomeViewController
@@ -29,6 +32,10 @@
     height = [UIScreen mainScreen].bounds.size.height;
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    
+    [self initChildControllers];
+    
+    [self initTabBar];
     
     [self initTopBar];
 }
@@ -60,13 +67,42 @@
     
 }
 
+- (void)initChildControllers
+{
+    self.view.backgroundColor = [UIColor clearColor];
+    
+    self.mightLikeViewCtrl = [[MightLikeViewController alloc] initWithNibName:@"MightLikeViewController" bundle:nil];
+    self.mightLikeViewCtrl.delegate = self;
+    
+    self.homeMainViewCtrl = [[HomeMainViewController alloc] initWithNibName:@"HomeMainViewController" bundle:nil];
+    self.homeMainViewCtrl.delegate = self;
+    
+    self.addNewViewCtrl = [[AddNewViewController alloc] initWithNibName:@"AddNewViewController" bundle:nil];
+    self.addNewViewCtrl.delegate = self;
+}
+
+- (void)initTabBar
+{
+    self.delegate = self;
+    
+    self.viewControllers = @[self.mightLikeViewCtrl, self.homeMainViewCtrl, self.addNewViewCtrl];
+    [self.tabBar setTintColor:UIColorFromRGB(0xDB434F)];
+    [self.tabBar setBarTintColor:[UIColor whiteColor]];
+    [[UITabBar appearance] setBackgroundColor:[UIColor whiteColor]];
+    
+    self.mightLikeViewCtrl.tabBarItem.image = [UIImage imageNamed:@"heart"];
+    self.homeMainViewCtrl.tabBarItem.image = [UIImage imageNamed:@"home"];
+    self.addNewViewCtrl.tabBarItem.image = [UIImage imageNamed:@"image"];
+}
+
 #pragma mark - tap gesture method
 - (void)arPageIVTapGRTap
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    ViewController *viewCtrl = [storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
-    viewCtrl.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentViewController:viewCtrl animated:YES completion:nil];
+    [self.viewCtrlDelegate backToARPageFromHome];
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    ViewController *viewCtrl = [storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
+//    viewCtrl.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+//    [self presentViewController:viewCtrl animated:YES completion:nil];
 }
 
 @end

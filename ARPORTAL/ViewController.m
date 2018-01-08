@@ -54,6 +54,7 @@
     height = [UIScreen mainScreen].bounds.size.height;
     
     self.homeCtrl = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
+    self.homeCtrl.viewCtrlDelegate = self;
     self.accountCtrl = [[AccountViewController alloc] initWithNibName:@"AccountViewController" bundle:nil];
     
     [self initTopBarView];
@@ -258,6 +259,7 @@
 {
     if (self.homeCtrl == nil) {
         self.homeCtrl = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
+        self.homeCtrl.viewCtrlDelegate = self;
     }
     [self.view.superview addSubview:self.homeCtrl.view];
     self.homeCtrl.view.frame = CGRectMake(-width, 0, width, height);
@@ -311,7 +313,6 @@
         self.homeCtrl.view.alpha = 0;
         self.view.frame = CGRectMake(0, 0, width, height);
         self.view.alpha = 1;
-        NSLog(@"bac to ar page");
         ARWorldTrackingConfiguration *configuration = [ARWorldTrackingConfiguration new];
         configuration.planeDetection = ARPlaneDetectionHorizontal;
         [self.sceneView.session runWithConfiguration: configuration];

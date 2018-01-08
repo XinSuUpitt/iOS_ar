@@ -9,8 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "ViewController.h"
 
+@protocol HomeViewCtrlDegelate <NSObject>
 
-@interface HomeViewController : UITabBarController<UITabBarControllerDelegate>
+@end
+
+@class MightLikeViewController;
+@class HomeMainViewController;
+@class AddNewViewController;
+
+@interface HomeViewController : UITabBarController<UITabBarControllerDelegate, HomeViewCtrlDegelate>
 {
     CGFloat width;
     CGFloat height;
@@ -18,8 +25,14 @@
     //top bar
     UIImageView *accountIV;
     UIImageView *arPageIV;
+    
+
 }
 
 @property (nonatomic, assign) id<ViewControllerDelegate> viewCtrlDelegate;
+
+@property (nonatomic, strong) MightLikeViewController *mightLikeViewCtrl;
+@property (nonatomic, strong) HomeMainViewController *homeMainViewCtrl;
+@property (nonatomic, strong) AddNewViewController *addNewViewCtrl;
 
 @end
