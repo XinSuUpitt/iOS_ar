@@ -9,9 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "HomeViewController.h"
 
-@interface MightLikeViewController : UIViewController
+@interface MightLikeViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
+    CGFloat width;
+    CGFloat height;
     
+    NSArray *likeImgArray;
+    
+    UICollectionView *collectionView;
 }
 
 @property (nonatomic, assign) id<HomeViewCtrlDegelate> delegate;

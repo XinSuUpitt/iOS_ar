@@ -8,18 +8,105 @@
 
 #import <Foundation/Foundation.h>
 #import "MightLikeViewController.h"
+#import "Manager.h"
 
 @implementation MightLikeViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor blueColor];
+    
+    width = [UIScreen mainScreen].bounds.size.width;
+    height = [UIScreen mainScreen].bounds.size.height;
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    [self inittableImgListArray];
+    
+    [self initCollectionView];
+}
+
+- (void)initCollectionView
+{
+    CGFloat topbarHeight = [self.delegate getTopBarHeight];
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, topbarHeight + 50, width, height - topbarHeight) collectionViewLayout:flowLayout];
+    collectionView.delegate = self;
+    collectionView.dataSource = self;
+    [collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"mightLikeCollectionViewCell"];
+    [collectionView setBackgroundColor:[UIColor whiteColor]];
+    [self.view addSubview:collectionView];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
+}
+
+- (void)inittableImgListArray
+{
+    likeImgArray = [[NSArray alloc] initWithObjects:@"art.scnassets/user_1.jpg", @"art.scnassets/user_2.jpg", @"art.scnassets/user_3.jpg", @"art.scnassets/user_4.jpg", @"art.scnassets/user_5.jpg", @"art.scnassets/user_6.jpg", @"art.scnassets/user_7.jpg", @"art.scnassets/user_8.jpg", @"art.scnassets/user_9.jpg", @"art.scnassets/user_10.jpg", @"art.scnassets/user_11.jpg", @"art.scnassets/user_12.jpg", @"art.scnassets/user_13.jpg", @"art.scnassets/user_14.jpg", @"art.scnassets/user_15.jpg", @"art.scnassets/user_16.jpg", @"art.scnassets/user_17.jpg", @"art.scnassets/user_18.jpg", @"art.scnassets/user_19.jpg", @"art.scnassets/user_20.jpg", @"art.scnassets/user_21.jpg", @"art.scnassets/user_22.jpg", @"art.scnassets/user_23.jpg", @"art.scnassets/user_24.jpg", @"art.scnassets/user_25.jpg", @"art.scnassets/user_26.jpg",nil];
+}
+
+#pragma mark - collectionviewdelegate methods
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 4;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 0;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGSize newSize = CGSizeZero;
+    newSize.height = 140;
+    if (indexPath.item %4 == 0 || indexPath.item % 4 == 3) {
+        newSize.width = (width - 8) * 0.38;
+    } else {
+        newSize.width = (width - 8) * 0.62;
+    }
+    return newSize;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(2, 2, 2, 2);
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *identifier = @"mightLikeCollectionViewCell";
+    
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    
+    cell.clipsToBounds = YES;
+    
+    cell.backgroundColor = [UIColor clearColor];
+    
+    NSString *name = [likeImgArray objectAtIndex:[indexPath row]];
+    
+    UIImageView *bgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:name]];
+    
+    cell.backgroundView = bgView;
+    
+    
+    [cell addSubview:bgView];
+    
+    return cell;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 26;
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    
+    return 1;
 }
 
 @end
