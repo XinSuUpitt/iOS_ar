@@ -192,6 +192,12 @@
     return cellHeight;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *imageString = [imgListNameArray objectAtIndex:[indexPath row]];
+    [self.delegate getimageString:imageString];
+}
+
 #pragma mark - click method
 - (void)touchDown:(id)sender
 {

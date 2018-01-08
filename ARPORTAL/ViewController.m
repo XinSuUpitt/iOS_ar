@@ -30,6 +30,8 @@
     self.sceneView.showsStatistics = NO;
     
     panameraViewImgString = @"art.scnassets/01.jpg";
+    
+    showARScene = NO;
 }
 
 
@@ -141,6 +143,31 @@
     imgNameArray = [[NSArray alloc] initWithObjects:@"art.scnassets/01.jpg",@"art.scnassets/02.jpg",@"art.scnassets/03.jpg",@"art.scnassets/04.jpg",@"art.scnassets/05.jpg",@"art.scnassets/06.jpg",@"art.scnassets/07.jpg",@"art.scnassets/08.jpg",@"art.scnassets/09.jpg",@"art.scnassets/10.jpg",@"art.scnassets/11.jpg",@"art.scnassets/12.jpg",@"art.scnassets/13.jpg",@"art.scnassets/14.jpg",@"art.scnassets/15.jpg",@"art.scnassets/16.jpg",@"art.scnassets/17.jpg",@"art.scnassets/18.jpg", nil];
 }
 
+- (void)addExitButton
+{
+    [addIV setHidden:YES];
+    [homeIV setHidden:YES];
+    [accountIV setHidden:YES];
+    
+    CGFloat itemSize = 30;
+    CGFloat itemOriginY = 20 + ([Manager isPhoneX] ? 24 : 0);
+    CGFloat paddingLeft = 15;
+    exitIV = [[UIImageView alloc] initWithFrame:CGRectMake(width-paddingLeft-itemSize, itemOriginY, itemSize, itemSize)];
+    [exitIV setImage:[UIImage imageNamed:@"x-thick"]];
+    exitIV.image = [exitIV.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [exitIV setTintColor:[UIColor whiteColor]];
+    [self.view addSubview:exitIV];
+    UITapGestureRecognizer *accountIVTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(exitIVTapGRTap)];
+    [exitIV setUserInteractionEnabled:YES];
+    [exitIV addGestureRecognizer:accountIVTapGR];
+}
+
+- (void)initARScene
+{
+    showARScene = NO;
+    [[self.sceneView.scene.rootNode.childNodes firstObject] removeFromParentNode];
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
@@ -183,7 +210,9 @@
         NSArray *results = [self.sceneView hitTest:locationPoint types:ARHitTestResultTypeExistingPlaneUsingExtent];
 
         ARHitTestResult *hitResult = [results firstObject];
-        if (hitResult) {
+        if (hitResult && showARScene == NO) {
+            [self addExitButton];
+            showARScene = YES;
             SCNScene *sphereScene = [SCNScene sceneNamed:@"art.scnassets/ship.scn"];
             sphereNode = [sphereScene.rootNode childNodeWithName:@"portal" recursively:YES];
             if (sphereNode) {
@@ -194,6 +223,7 @@
                 sphereNode.position = [camera convertPosition:position toNode:nil];
                 [self.sceneView.scene.rootNode addChildNode:sphereNode];
             }
+            
         }
     }
 }
@@ -230,8 +260,9 @@
 
     planeNode.geometry = plane;
 
-    [node addChildNode:planeNode];
-    
+    if (showARScene == NO) {
+        [node addChildNode:planeNode];
+    }
 }
 
 - (void)session:(ARSession *)session didFailWithError:(NSError *)error {
@@ -297,6 +328,11 @@
     }];
 }
 
+- (void)exitIVTapGRTap
+{
+    [self initARScene];
+}
+
 #pragma mark - view change method
 - (void)backToARPageFromHome
 {
@@ -318,6 +354,13 @@
         self.view.alpha = 1;
         [self.homeCtrl.view removeFromSuperview];
     }];
+}
+
+#pragma mark - delegate methods
+- (void)showPaneramaWith:(NSString*)string
+{
+    [self backToARPageFromHome];
+    panameraViewImgString = [NSString stringWithString:string];
 }
 
 @end

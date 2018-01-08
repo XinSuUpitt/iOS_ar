@@ -143,6 +143,11 @@
     return accountIV.frame.origin.y+accountIV.frame.size.height+11;
 }
 
+- (void)getimageString:(NSString *)string
+{
+    [self.viewCtrlDelegate showPaneramaWith:string];
+}
+
 
 #pragma mark - tap gesture method
 - (void)arPageIVTapGRTap

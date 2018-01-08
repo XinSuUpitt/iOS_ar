@@ -15,16 +15,20 @@
 
 @protocol ViewControllerDelegate <NSObject>
 - (void)backToARPageFromHome;
+- (void)showPaneramaWith:(NSString*)string;
 @end
 
 @interface ViewController : UIViewController<UIScrollViewDelegate, ViewControllerDelegate> {
     CGFloat width;
     CGFloat height;
     
+    BOOL showARScene;
+    
     //top bar
     UIImageView *homeIV;
     UIImageView *addIV;
     UIImageView *accountIV;
+    UIImageView *exitIV;
     
     NSArray *imgNameArray;
     NSString *panameraViewImgString;

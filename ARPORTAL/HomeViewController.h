@@ -11,6 +11,7 @@
 
 @protocol HomeViewCtrlDegelate <NSObject>
 -(CGFloat)getTopBarHeight;
+- (void)getimageString:(NSString *)string;
 @end
 
 @class MightLikeViewController;
