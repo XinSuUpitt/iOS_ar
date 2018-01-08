@@ -50,13 +50,13 @@
     [self.view addSubview:tapBGView];
     
     accountIV = [[UIImageView alloc] initWithFrame:CGRectMake(10, originY, iconSize, iconSize)];
-    [accountIV setImage:[UIImage imageNamed:@"user"]];
+    [accountIV setImage:[UIImage imageNamed:@"account-100"]];
     accountIV.image = [accountIV.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [accountIV setTintColor:UIColorFromRGB(0x102037)];
     [self.view addSubview:accountIV];
     
     arPageIV = [[UIImageView alloc] initWithFrame:CGRectMake(width - iconSize - 10, originY, iconSize, iconSize)];
-    [arPageIV setImage:[UIImage imageNamed:@"picture-frame"]];
+    [arPageIV setImage:[UIImage imageNamed:@"camera"]];
     arPageIV.image = [arPageIV.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [arPageIV setTintColor:UIColorFromRGB(0x102037)];
     [self.view addSubview:arPageIV];
@@ -94,9 +94,9 @@
     [self.tabBar setBarTintColor:[UIColor whiteColor]];
     [[UITabBar appearance] setBackgroundColor:[UIColor whiteColor]];
     
-    self.mightLikeViewCtrl.tabBarItem.image = [UIImage imageNamed:@"heart"];
-    self.homeMainViewCtrl.tabBarItem.image = [UIImage imageNamed:@"home"];
-    self.addNewViewCtrl.tabBarItem.image = [UIImage imageNamed:@"image"];
+    self.mightLikeViewCtrl.tabBarItem.image = [UIImage imageNamed:@"heart-7"];
+    self.homeMainViewCtrl.tabBarItem.image = [UIImage imageNamed:@"home-7"];
+    self.addNewViewCtrl.tabBarItem.image = [UIImage imageNamed:@"camera-7"];
     
 }
 

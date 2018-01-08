@@ -68,9 +68,9 @@
 
 - (void)initTopBarView
 {
-    CGFloat itemSize = 36;
-    CGFloat itemOriginY = 20 + ([Manager isPhoneX] ? 24 : 0);
-    CGFloat paddingLeft = 20;
+    CGFloat itemSize = 30;
+    CGFloat itemOriginY = 15 + ([Manager isPhoneX] ? 24 : 0);
+    CGFloat paddingLeft = 15;
     
     addIV = [[UIImageView alloc] initWithFrame:CGRectMake(width/2-itemSize/2, itemOriginY, itemSize, itemSize)];
     [addIV setImage:[UIImage imageNamed:@"plus"]];
@@ -91,7 +91,7 @@
     [homeIV addGestureRecognizer:homeIVTapGR];
     
     accountIV = [[UIImageView alloc] initWithFrame:CGRectMake(width-paddingLeft-itemSize, itemOriginY, itemSize, itemSize)];
-    [accountIV setImage:[UIImage imageNamed:@"account"]];
+    [accountIV setImage:[UIImage imageNamed:@"account-100"]];
     accountIV.image = [accountIV.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [accountIV setTintColor:[UIColor whiteColor]];
     [self.view addSubview:accountIV];
