@@ -58,6 +58,7 @@
     self.homeCtrl = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
     self.homeCtrl.viewCtrlDelegate = self;
     self.accountCtrl = [[AccountViewController alloc] initWithNibName:@"AccountViewController" bundle:nil];
+    self.accountCtrl.viewCtrlDelegate = self;
     
     [self initTopBarView];
     

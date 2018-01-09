@@ -7,9 +7,37 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ViewController.h"
 
-@interface AccountViewController : UIViewController
+@interface AccountViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ViewControllerDelegate>
 {
+    CGFloat width;
+    CGFloat height;
     
+    NSArray *imgListArray;
+    
+    //top bar
+    UIImageView *tapBGView;
+    UIImageView *homeIV;
+    UIImageView *arPageIV;
+    
+    //cover
+    UIImageView *coverImgView;
+    
+    //account settings and editings
+    UIImageView *placeholderBgView;
+    UIImageView *accountImgView;
+    
+    UILabel *nameLab;
+    UILabel *signatureLab;
+    UILabel *followersNumLab;
+    UILabel *followingNumLab;
+    UIImageView *settingImgView;
+    
+    
+    //collectionView
+    UICollectionView *collectionView;
 }
+
+@property (nonatomic, assign) id<ViewControllerDelegate> viewCtrlDelegate;
 @end
