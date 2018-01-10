@@ -52,15 +52,19 @@
     arPageIV.image = [arPageIV.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [arPageIV setTintColor:UIColorFromRGB(0x102037)];
     [self.view addSubview:arPageIV];
+    UITapGestureRecognizer *arPageIVTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(arPageIVTapGRTap)];
+    [arPageIV setUserInteractionEnabled:YES];
+    [arPageIV addGestureRecognizer:arPageIVTapGR];
     
     homeIV = [[UIImageView alloc] initWithFrame:CGRectMake(width - iconSize - 10, originY, iconSize, iconSize)];
     [homeIV setImage:[UIImage imageNamed:@"home"]];
     homeIV.image = [homeIV.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [homeIV setTintColor:UIColorFromRGB(0x102037)];
     [self.view addSubview:homeIV];
-    UITapGestureRecognizer *arPageIVTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(arPageIVTapGRTap)];
+    UITapGestureRecognizer *homePageIVTapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(homePageIVTapGRTap)];
     [homeIV setUserInteractionEnabled:YES];
-    [homeIV addGestureRecognizer:arPageIVTapGR];
+    [homeIV addGestureRecognizer:homePageIVTapGR];
+    
     
     CALayer *border = [CALayer layer];
     border.backgroundColor = [UIColor colorWithRed:16.f/255.f green:32.f/255.f blue:55.f/255.f alpha:0.2].CGColor;
@@ -226,6 +230,17 @@
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     
     return 1;
+}
+
+#pragma mark - tap gesture method
+- (void)arPageIVTapGRTap
+{
+    [self.viewCtrlDelegate backToARPageFromAccount];
+}
+
+- (void)homePageIVTapGRTap
+{
+    [self.viewCtrlDelegate gotoHomePageFromAccount];
 }
 
 @end

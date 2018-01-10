@@ -15,6 +15,9 @@
 
 @protocol ViewControllerDelegate <NSObject>
 - (void)backToARPageFromHome;
+- (void)gotoAccountPageFromHome;
+- (void)backToARPageFromAccount;
+- (void)gotoHomePageFromAccount;
 - (void)showPaneramaWith:(NSString*)string;
 - (void)showPaneramaFromAccount:(NSString*)string;
 @end

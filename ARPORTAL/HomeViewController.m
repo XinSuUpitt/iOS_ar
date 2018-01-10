@@ -54,6 +54,9 @@
     accountIV.image = [accountIV.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [accountIV setTintColor:UIColorFromRGB(0x102037)];
     [self.view addSubview:accountIV];
+    UITapGestureRecognizer *accountPageGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(accountPageGRTap)];
+    [accountIV setUserInteractionEnabled:YES];
+    [accountIV addGestureRecognizer:accountPageGR];
     
     arPageIV = [[UIImageView alloc] initWithFrame:CGRectMake(width - iconSize - 10, originY, iconSize, iconSize)];
     [arPageIV setImage:[UIImage imageNamed:@"camera"]];
@@ -117,7 +120,6 @@
     
     [fromView.superview addSubview:toView];
     toView.frame = CGRectMake((scrollRight?width:-width), viewSize.origin.y, width, viewSize.size.height);
-    
     [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         fromView.frame = CGRectMake((scrollRight?-width:width), viewSize.origin.y, width, viewSize.size.height);
         toView.frame = CGRectMake(0, viewSize.origin.y, width, viewSize.size.height);
@@ -157,6 +159,11 @@
 //    ViewController *viewCtrl = [storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
 //    viewCtrl.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
 //    [self presentViewController:viewCtrl animated:YES completion:nil];
+}
+
+- (void)accountPageGRTap
+{
+    [self.viewCtrlDelegate gotoAccountPageFromHome];
 }
 
 @end

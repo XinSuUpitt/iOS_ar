@@ -313,36 +313,30 @@
     }
     [self.view.superview addSubview:self.homeCtrl.view];
     self.homeCtrl.view.frame = CGRectMake(-width, 0, width, height);
-    self.homeCtrl.view.alpha = 0;
-    [UIView animateWithDuration:.2 animations:^{
+    [UIView animateWithDuration:.3 animations:^{
         self.homeCtrl.view.frame = CGRectMake(0, 0, width, height);
         self.view.frame = CGRectMake(width, 0, width, height);
-        self.homeCtrl.view.alpha = 1;
-        self.view.alpha = 0;
     } completion:^(BOOL finish){
         self.homeCtrl.view.frame = CGRectMake(0, 0, width, height);
-        self.homeCtrl.view.alpha = 1;
         self.view.frame = CGRectMake(width, 0, width, height);
-        self.view.alpha = 0;
         [self.sceneView.session pause];
     }];
 }
 
 -(void)accountIVTapGRTap
 {
+    if (self.accountCtrl == nil) {
+        self.accountCtrl = [[AccountViewController alloc] initWithNibName:@"AccountViewController" bundle:nil];
+        self.accountCtrl.viewCtrlDelegate = self;
+    }
     [self.view.superview addSubview:self.accountCtrl.view];
     self.accountCtrl.view.frame = CGRectMake(width, 0, width, height);
-    self.accountCtrl.view.alpha = 0;
-    [UIView animateWithDuration:.2 animations:^{
+    [UIView animateWithDuration:.3 animations:^{
         self.accountCtrl.view.frame = CGRectMake(0, 0, width, height);
-        self.accountCtrl.view.alpha = 1;
         self.view.frame = CGRectMake(-width, 0, width, height);
-        self.view.alpha = 0;
     } completion:^(BOOL finish){
         self.accountCtrl.view.frame = CGRectMake(0, 0, width, height);
-        self.accountCtrl.view.alpha = 1;
         self.view.frame = CGRectMake(-width, 0, width, height);
-        self.view.alpha = 0;
         [self.sceneView.session pause];
     }];
 }
@@ -356,21 +350,16 @@
 - (void)backToARPageFromHome
 {
     self.homeCtrl.view.frame = CGRectMake(0, 0, width, height);
-    self.homeCtrl.view.alpha = 1;
-    self.view.alpha = 0;
+    self.view.frame = CGRectMake(width, 0, width, height);
     ARWorldTrackingConfiguration *configuration = [ARWorldTrackingConfiguration new];
     configuration.planeDetection = ARPlaneDetectionHorizontal;
     [self.sceneView.session runWithConfiguration: configuration];
-    [UIView animateWithDuration:.2 animations:^{
+    [UIView animateWithDuration:.3 animations:^{
         self.homeCtrl.view.frame = CGRectMake(-width, 0, width, height);
         self.view.frame = CGRectMake(0, 0, width, height);
-        self.homeCtrl.view.alpha = 0;
-        self.view.alpha = 1;
     } completion:^(BOOL finish){
         self.homeCtrl.view.frame = CGRectMake(-width, 0, width, height);
-        self.homeCtrl.view.alpha = 0;
         self.view.frame = CGRectMake(0, 0, width, height);
-        self.view.alpha = 1;
         [self.homeCtrl.view removeFromSuperview];
     }];
 }
@@ -378,21 +367,54 @@
 - (void)backToARPageFromAccount
 {
     self.accountCtrl.view.frame = CGRectMake(0, 0, width, height);
-    self.accountCtrl.view.alpha = 1;
-    self.view.alpha = 0;
+    self.view.frame = CGRectMake(-width, 0, width, height);
     ARWorldTrackingConfiguration *configuration = [ARWorldTrackingConfiguration new];
     configuration.planeDetection = ARPlaneDetectionHorizontal;
     [self.sceneView.session runWithConfiguration: configuration];
-    [UIView animateWithDuration:.2 animations:^{
+    [UIView animateWithDuration:.3 animations:^{
         self.accountCtrl.view.frame = CGRectMake(width, 0, width, height);
         self.view.frame = CGRectMake(0, 0, width, height);
-        self.accountCtrl.view.alpha = 0;
-        self.view.alpha = 1;
     } completion:^(BOOL finish){
         self.accountCtrl.view.frame = CGRectMake(width, 0, width, height);
-        self.accountCtrl.view.alpha = 0;
         self.view.frame = CGRectMake(0, 0, width, height);
-        self.view.alpha = 1;
+        [self.accountCtrl.view removeFromSuperview];
+    }];
+}
+
+- (void)gotoAccountPageFromHome
+{
+    if (self.accountCtrl == nil) {
+        self.accountCtrl = [[AccountViewController alloc] initWithNibName:@"AccountViewController" bundle:nil];
+        self.accountCtrl.viewCtrlDelegate = self;
+    }
+    [self.view.superview addSubview:self.accountCtrl.view];
+    self.homeCtrl.view.frame = CGRectMake(0, 0, width, height);
+    self.accountCtrl.view.frame = CGRectMake(-width, 0, width, height);
+    [UIView animateWithDuration:.3 animations:^{
+        self.homeCtrl.view.frame = CGRectMake(width, 0, width, height);
+        self.accountCtrl.view.frame = CGRectMake(0, 0, width, height);
+    } completion:^(BOOL finish){
+        self.homeCtrl.view.frame = CGRectMake(width, 0, width, height);
+        self.accountCtrl.view.frame = CGRectMake(0, 0, width, height);
+        [self.homeCtrl.view removeFromSuperview];
+    }];
+}
+
+- (void)gotoHomePageFromAccount
+{
+    if (self.homeCtrl == nil) {
+        self.homeCtrl = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
+        self.homeCtrl.viewCtrlDelegate = self;
+    }
+    [self.view.superview addSubview:self.homeCtrl.view];
+    self.accountCtrl.view.frame = CGRectMake(0, 0, width, height);
+    self.homeCtrl.view.frame = CGRectMake(width, 0, width, height);
+    [UIView animateWithDuration:.3 animations:^{
+        self.accountCtrl.view.frame = CGRectMake(-width, 0, width, height);
+        self.homeCtrl.view.frame = CGRectMake(0, 0, width, height);
+    } completion:^(BOOL finish){
+        self.accountCtrl.view.frame = CGRectMake(-width, 0, width, height);
+        self.homeCtrl.view.frame = CGRectMake(0, 0, width, height);
         [self.accountCtrl.view removeFromSuperview];
     }];
 }
