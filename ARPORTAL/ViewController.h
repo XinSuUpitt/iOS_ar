@@ -25,9 +25,10 @@
 - (AccountViewController*)getAccountCtrl;
 @end
 
-@interface ViewController : UIViewController<UIScrollViewDelegate, ViewControllerDelegate> {
+@interface ViewController : UIViewController<UIScrollViewDelegate, ViewControllerDelegate, UIGestureRecognizerDelegate> {
     CGFloat width;
     CGFloat height;
+    CGFloat centerX;
     
     BOOL showARScene;
     

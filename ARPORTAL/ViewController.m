@@ -65,6 +65,18 @@
     [self initBlurView];
     
     [self initHorizontalScrollView];
+    
+    UIScreenEdgePanGestureRecognizer *rightEdgeGesture = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(handleRightEdgeGesture:)];
+    rightEdgeGesture.edges = UIRectEdgeRight;
+    rightEdgeGesture.delegate = self;
+    [self.view addGestureRecognizer:rightEdgeGesture];
+    
+    centerX = self.view.bounds.size.width/2;
+    
+    UIScreenEdgePanGestureRecognizer *leftEdgeGesture = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(handleLeftEdgeGesture:)];
+    leftEdgeGesture.edges = UIRectEdgeLeft;
+    leftEdgeGesture.delegate = self;
+    [self.view addGestureRecognizer:leftEdgeGesture];
 }
 
 - (void)initTopBarView
@@ -303,6 +315,84 @@
 - (AccountViewController*)getAccountCtrl
 {
     return self.accountCtrl;
+}
+
+#pragma mark - swipe gesture methods
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
+- (void)handleLeftEdgeGesture:(UIScreenEdgePanGestureRecognizer *)gesture
+{
+    CGFloat distance = 100;
+    UIView *fromView;
+    UIView *toView;
+    fromView = self.view;
+    if (self.homeCtrl == nil) {
+        self.homeCtrl = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
+        self.homeCtrl.viewCtrlDelegate = self;
+    }
+    [self.view.superview addSubview:self.homeCtrl.view];
+    toView = self.homeCtrl.view;
+    toView.frame = CGRectMake(-width, 0, width, height);
+    if (UIGestureRecognizerStateBegan == gesture.state || UIGestureRecognizerStateChanged == gesture.state) {
+        CGPoint transition = [gesture translationInView:gesture.view];
+        toView.center = CGPointMake(centerX + transition.x - width, fromView.center.y);
+    } else {
+        CGPoint transition = [gesture translationInView:gesture.view];
+        if (transition.x > distance) {
+            toView.center = CGPointMake(centerX + transition.x - width, fromView.center.y);
+            [UIView animateWithDuration:.3 animations:^{
+                toView.center = CGPointMake(centerX, fromView.center.y);
+            } completion:^(BOOL finished) {
+                [self.sceneView.session pause];
+            }];
+        } else {
+            toView.center = CGPointMake(centerX + transition.x - width, fromView.center.y);
+            [UIView animateWithDuration:.3 animations:^{
+                toView.center = CGPointMake(centerX-width, fromView.center.y);
+            } completion:^(BOOL finished) {
+                [toView removeFromSuperview];
+            }];
+        }
+    }
+}
+
+- (void)handleRightEdgeGesture:(UIScreenEdgePanGestureRecognizer *)gesture
+{
+    CGFloat distance = 100;
+    UIView *fromView;
+    UIView *toView;
+    fromView = self.view;
+    if (self.accountCtrl == nil) {
+        self.accountCtrl = [[AccountViewController alloc] initWithNibName:@"AccountViewController" bundle:nil];
+        self.accountCtrl.viewCtrlDelegate = self;
+    }
+    [self.view.superview addSubview:self.accountCtrl.view];
+    toView = self.accountCtrl.view;
+    toView.frame = CGRectMake(width, 0, width, height);
+    if (UIGestureRecognizerStateBegan == gesture.state || UIGestureRecognizerStateChanged == gesture.state) {
+        CGPoint transition = [gesture translationInView:gesture.view];
+        toView.center = CGPointMake(centerX + transition.x + width, fromView.center.y);
+    } else {
+        CGPoint transition = [gesture translationInView:gesture.view];
+        if (-transition.x> distance) {
+            toView.center = CGPointMake(centerX + transition.x + width, fromView.center.y);
+            [UIView animateWithDuration:.3 animations:^{
+                toView.center = CGPointMake(centerX, fromView.center.y);
+            } completion:^(BOOL finished) {
+                [self.sceneView.session pause];
+            }];
+        } else {
+            toView.center = CGPointMake(centerX + transition.x - width, fromView.center.y);
+            [UIView animateWithDuration:.3 animations:^{
+                toView.center = CGPointMake(centerX-width, fromView.center.y);
+            } completion:^(BOOL finished) {
+                [toView removeFromSuperview];
+            }];
+        }
+    }
 }
 
 #pragma mark - tap gesture method
