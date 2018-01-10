@@ -29,7 +29,7 @@
     // Show statistics such as fps and timing information
     self.sceneView.showsStatistics = NO;
     
-    panameraViewImgString = @"art.scnassets/01.jpg";
+    panameraViewImgString = @"art.scnassets/user_6.jpg";
     
     showARScene = NO;
 }
@@ -141,7 +141,7 @@
 
 - (void)initImgArray
 {
-    imgNameArray = [[NSArray alloc] initWithObjects:@"art.scnassets/01.jpg",@"art.scnassets/02.jpg",@"art.scnassets/03.jpg",@"art.scnassets/04.jpg",@"art.scnassets/05.jpg",@"art.scnassets/06.jpg",@"art.scnassets/07.jpg",@"art.scnassets/08.jpg",@"art.scnassets/09.jpg",@"art.scnassets/10.jpg",@"art.scnassets/11.jpg",@"art.scnassets/12.jpg",@"art.scnassets/13.jpg",@"art.scnassets/14.jpg",@"art.scnassets/15.jpg",@"art.scnassets/16.jpg",@"art.scnassets/17.jpg",@"art.scnassets/18.jpg", nil];
+    imgNameArray = [[NSArray alloc] initWithObjects:@"art.scnassets/07.jpg",@"art.scnassets/08.jpg",@"art.scnassets/09.jpg",@"art.scnassets/10.jpg",@"art.scnassets/11.jpg",@"art.scnassets/12.jpg",@"art.scnassets/13.jpg",@"art.scnassets/14.jpg",@"art.scnassets/15.jpg",@"art.scnassets/16.jpg",@"art.scnassets/17.jpg",@"art.scnassets/18.jpg", nil];
 }
 
 - (void)addExitButton
@@ -163,10 +163,23 @@
     [exitIV addGestureRecognizer:accountIVTapGR];
 }
 
+- (void)resumeOriginalTopBar
+{
+    [addIV setHidden:NO];
+    [homeIV setHidden:NO];
+    [accountIV setHidden:NO];
+    [exitIV setHidden:YES];
+}
+
 - (void)initARScene
 {
     showARScene = NO;
-    [[self.sceneView.scene.rootNode.childNodes firstObject] removeFromParentNode];
+    if (sphereNode) {
+        [sphereNode removeFromParentNode];
+    }
+    [self.sceneView.session removeAnchor:planeAnchor];
+    [self.sceneView.scene.rootNode removeFromParentNode];
+    [self resumeOriginalTopBar];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -247,11 +260,11 @@
     if (![anchor isKindOfClass:[ARPlaneAnchor class]]) {
         return;
     }
-    ARPlaneAnchor *planeAnchor = anchor;
+    planeAnchor = anchor;
 
-    SCNPlane *plane = [SCNPlane planeWithWidth:planeAnchor.extent.x height:planeAnchor.extent.z];
+    plane = [SCNPlane planeWithWidth:planeAnchor.extent.x height:planeAnchor.extent.z];
 
-    SCNNode *planeNode = [[SCNNode alloc] init];
+    planeNode = [[SCNNode alloc] init];
     planeNode.position = SCNVector3Make(0, 0, planeAnchor.center.z);
     planeNode.transform = SCNMatrix4MakeRotation(-M_PI/2, 1, 0, 0);
     SCNMaterial *gridMaterial = [[SCNMaterial alloc] init];
@@ -264,6 +277,11 @@
     if (showARScene == NO) {
         [node addChildNode:planeNode];
     }
+}
+
+- (void)renderer:(id<SCNSceneRenderer>)renderer didRemoveNode:(SCNNode *)node forAnchor:(ARAnchor *)anchor
+{
+    [[node.childNodes firstObject] removeFromParentNode];
 }
 
 - (void)session:(ARSession *)session didFailWithError:(NSError *)error {
@@ -357,10 +375,38 @@
     }];
 }
 
+- (void)backToARPageFromAccount
+{
+    self.accountCtrl.view.frame = CGRectMake(0, 0, width, height);
+    self.accountCtrl.view.alpha = 1;
+    self.view.alpha = 0;
+    ARWorldTrackingConfiguration *configuration = [ARWorldTrackingConfiguration new];
+    configuration.planeDetection = ARPlaneDetectionHorizontal;
+    [self.sceneView.session runWithConfiguration: configuration];
+    [UIView animateWithDuration:.2 animations:^{
+        self.accountCtrl.view.frame = CGRectMake(width, 0, width, height);
+        self.view.frame = CGRectMake(0, 0, width, height);
+        self.accountCtrl.view.alpha = 0;
+        self.view.alpha = 1;
+    } completion:^(BOOL finish){
+        self.accountCtrl.view.frame = CGRectMake(width, 0, width, height);
+        self.accountCtrl.view.alpha = 0;
+        self.view.frame = CGRectMake(0, 0, width, height);
+        self.view.alpha = 1;
+        [self.accountCtrl.view removeFromSuperview];
+    }];
+}
+
 #pragma mark - delegate methods
 - (void)showPaneramaWith:(NSString*)string
 {
     [self backToARPageFromHome];
+    panameraViewImgString = [NSString stringWithString:string];
+}
+
+- (void)showPaneramaFromAccount:(NSString*)string
+{
+    [self backToARPageFromAccount];
     panameraViewImgString = [NSString stringWithString:string];
 }
 

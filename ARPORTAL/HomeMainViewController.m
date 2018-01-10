@@ -108,12 +108,12 @@
 
 - (void)initImgArray
 {
-    imgNameArray = [[NSArray alloc] initWithObjects:@"art.scnassets/01.jpg",@"art.scnassets/02.jpg",@"art.scnassets/03.jpg",@"art.scnassets/04.jpg",@"art.scnassets/05.jpg",@"art.scnassets/06.jpg",@"art.scnassets/07.jpg",@"art.scnassets/08.jpg",@"art.scnassets/09.jpg",@"art.scnassets/10.jpg",@"art.scnassets/11.jpg",@"art.scnassets/12.jpg",@"art.scnassets/13.jpg",@"art.scnassets/14.jpg",@"art.scnassets/15.jpg",@"art.scnassets/16.jpg",@"art.scnassets/17.jpg",@"art.scnassets/18.jpg", nil];
+    imgNameArray = [[NSArray alloc] initWithObjects:@"art.scnassets/01.jpg",@"art.scnassets/02.jpg",@"art.scnassets/03.jpg",@"art.scnassets/04.jpg",@"art.scnassets/05.jpg",@"art.scnassets/06.jpg", nil];
 }
 
 - (void)inittableImgListArray
 {
-    imgListNameArray = [[NSArray alloc] initWithObjects:@"art.scnassets/user_1.jpg", @"art.scnassets/user_2.jpg", @"art.scnassets/user_3.jpg", @"art.scnassets/user_4.jpg", @"art.scnassets/user_5.jpg", @"art.scnassets/user_6.jpg", @"art.scnassets/user_7.jpg", @"art.scnassets/user_8.jpg", @"art.scnassets/user_9.jpg", @"art.scnassets/user_10.jpg", @"art.scnassets/user_11.jpg", @"art.scnassets/user_12.jpg", @"art.scnassets/user_13.jpg", @"art.scnassets/user_14.jpg", @"art.scnassets/user_15.jpg", @"art.scnassets/user_16.jpg",nil];
+    imgListNameArray = [[NSArray alloc] initWithObjects: @"art.scnassets/user_6.jpg", @"art.scnassets/user_7.jpg", @"art.scnassets/user_8.jpg", @"art.scnassets/user_9.jpg", @"art.scnassets/user_10.jpg", @"art.scnassets/user_11.jpg", @"art.scnassets/user_12.jpg", @"art.scnassets/user_13.jpg", @"art.scnassets/user_14.jpg", @"art.scnassets/user_15.jpg",nil];
 }
 
 #pragma mark - refresh methods

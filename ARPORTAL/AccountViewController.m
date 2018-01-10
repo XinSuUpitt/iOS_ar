@@ -159,7 +159,7 @@
 
 - (void)initImgListArray
 {
-    imgListArray = [[NSArray alloc] initWithObjects:@"art.scnassets/user_1.jpg", @"art.scnassets/user_2.jpg", @"art.scnassets/user_3.jpg", @"art.scnassets/user_4.jpg", @"art.scnassets/user_5.jpg", @"art.scnassets/user_6.jpg", @"art.scnassets/user_7.jpg", @"art.scnassets/user_8.jpg", @"art.scnassets/user_9.jpg", @"art.scnassets/user_10.jpg", @"art.scnassets/user_11.jpg", @"art.scnassets/user_12.jpg", @"art.scnassets/user_13.jpg", @"art.scnassets/user_14.jpg", @"art.scnassets/user_15.jpg", @"art.scnassets/user_16.jpg", @"art.scnassets/user_17.jpg", @"art.scnassets/user_18.jpg", @"art.scnassets/user_19.jpg", @"art.scnassets/user_20.jpg", @"art.scnassets/user_21.jpg", @"art.scnassets/user_22.jpg", @"art.scnassets/user_23.jpg", @"art.scnassets/user_24.jpg", @"art.scnassets/user_25.jpg", @"art.scnassets/user_26.jpg",nil];
+    imgListArray = [[NSArray alloc] initWithObjects:@"art.scnassets/user_15.jpg", @"art.scnassets/user_16.jpg", @"art.scnassets/user_17.jpg", @"art.scnassets/user_18.jpg", @"art.scnassets/user_19.jpg", @"art.scnassets/user_20.jpg", @"art.scnassets/user_21.jpg", @"art.scnassets/user_22.jpg", @"art.scnassets/user_23.jpg", @"art.scnassets/user_24.jpg", @"art.scnassets/user_25.jpg", @"art.scnassets/user_26.jpg",nil];
 }
 
 #pragma mark - collectionviewdelegate methods
@@ -215,12 +215,12 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *imageString = [imgListArray objectAtIndex:[indexPath row]];
-    [self.viewCtrlDelegate showPaneramaWith:imageString];
+    [self.viewCtrlDelegate showPaneramaFromAccount:imageString];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 26;
+    return 12;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {

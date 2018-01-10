@@ -16,6 +16,7 @@
 @protocol ViewControllerDelegate <NSObject>
 - (void)backToARPageFromHome;
 - (void)showPaneramaWith:(NSString*)string;
+- (void)showPaneramaFromAccount:(NSString*)string;
 @end
 
 @interface ViewController : UIViewController<UIScrollViewDelegate, ViewControllerDelegate> {
@@ -37,6 +38,9 @@
     UIScrollView *horizontalScrollView;
     
     SCNNode *sphereNode;
+    SCNPlane *plane;
+    SCNNode *planeNode;
+    ARPlaneAnchor *planeAnchor;
 }
 
 @property (nonatomic, strong) HomeViewController *homeCtrl;
