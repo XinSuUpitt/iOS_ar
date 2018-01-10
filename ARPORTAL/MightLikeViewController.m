@@ -29,9 +29,10 @@
 - (void)initCollectionView
 {
     CGFloat topbarHeight = [self.delegate getTopBarHeight];
+    NSLog(@"top bar height %f", topbarHeight);
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, topbarHeight + 50, width, height - topbarHeight) collectionViewLayout:flowLayout];
+    collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, topbarHeight, width, height - topbarHeight) collectionViewLayout:flowLayout];
     collectionView.delegate = self;
     collectionView.dataSource = self;
     [collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"mightLikeCollectionViewCell"];
@@ -52,7 +53,7 @@
 #pragma mark - collectionviewdelegate methods
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 4;
+    return 1;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
@@ -65,16 +66,16 @@
     CGSize newSize = CGSizeZero;
     newSize.height = 140;
     if (indexPath.item %4 == 0 || indexPath.item % 4 == 3) {
-        newSize.width = (width - 8) * 0.38;
+        newSize.width = (width - 1) * 0.38;
     } else {
-        newSize.width = (width - 8) * 0.62;
+        newSize.width = (width - 1) * 0.62;
     }
     return newSize;
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(2, 2, 2, 2);
+    return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath

@@ -299,6 +299,12 @@
     
 }
 
+#pragma mark - getter and setter
+- (AccountViewController*)getAccountCtrl
+{
+    return self.accountCtrl;
+}
+
 #pragma mark - tap gesture method
 - (void)addIVTapGRTap
 {
@@ -315,10 +321,11 @@
     self.homeCtrl.view.frame = CGRectMake(-width, 0, width, height);
     [UIView animateWithDuration:.3 animations:^{
         self.homeCtrl.view.frame = CGRectMake(0, 0, width, height);
-        self.view.frame = CGRectMake(width, 0, width, height);
+        self.view.frame = CGRectMake(0, 0, width, height);
     } completion:^(BOOL finish){
         self.homeCtrl.view.frame = CGRectMake(0, 0, width, height);
-        self.view.frame = CGRectMake(width, 0, width, height);
+        self.view.frame = CGRectMake(0, 0, width, height);
+        [self.homeCtrl setSwipeType:SwipeOrScrollType_Default];
         [self.sceneView.session pause];
     }];
 }
@@ -333,10 +340,10 @@
     self.accountCtrl.view.frame = CGRectMake(width, 0, width, height);
     [UIView animateWithDuration:.3 animations:^{
         self.accountCtrl.view.frame = CGRectMake(0, 0, width, height);
-        self.view.frame = CGRectMake(-width, 0, width, height);
+        self.view.frame = CGRectMake(-0, 0, width, height);
     } completion:^(BOOL finish){
         self.accountCtrl.view.frame = CGRectMake(0, 0, width, height);
-        self.view.frame = CGRectMake(-width, 0, width, height);
+        self.view.frame = CGRectMake(-0, 0, width, height);
         [self.sceneView.session pause];
     }];
 }
@@ -417,6 +424,18 @@
         self.homeCtrl.view.frame = CGRectMake(0, 0, width, height);
         [self.accountCtrl.view removeFromSuperview];
     }];
+}
+
+- (void)showARPageUnderView
+{
+    ARWorldTrackingConfiguration *configuration = [ARWorldTrackingConfiguration new];
+    configuration.planeDetection = ARPlaneDetectionHorizontal;
+    [self.sceneView.session runWithConfiguration: configuration];
+}
+
+- (void)pauseARPageUnderView
+{
+    [self.sceneView.session pause];
 }
 
 #pragma mark - delegate methods

@@ -20,6 +20,9 @@
 - (void)gotoHomePageFromAccount;
 - (void)showPaneramaWith:(NSString*)string;
 - (void)showPaneramaFromAccount:(NSString*)string;
+- (void)showARPageUnderView;
+- (void)pauseARPageUnderView;
+- (AccountViewController*)getAccountCtrl;
 @end
 
 @interface ViewController : UIViewController<UIScrollViewDelegate, ViewControllerDelegate> {

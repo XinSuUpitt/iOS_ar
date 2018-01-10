@@ -169,7 +169,7 @@
 #pragma mark - collectionviewdelegate methods
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 2;
+    return 1;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
@@ -182,9 +182,9 @@
     CGSize newSize = CGSizeZero;
     newSize.height = 140;
     if (indexPath.item %4 == 0 || indexPath.item % 4 == 3) {
-        newSize.width = (width - 2) * 0.50;
+        newSize.width = (width - 1) * 0.50;
     } else {
-        newSize.width = (width - 2) * 0.50;
+        newSize.width = (width - 1) * 0.50;
     }
     return newSize;
 }
