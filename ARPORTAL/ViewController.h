@@ -23,6 +23,7 @@
 - (void)showARPageUnderView;
 - (void)pauseARPageUnderView;
 - (AccountViewController*)getAccountCtrl;
+- (HomeViewController*)getHomeCtrl;
 @end
 
 @interface ViewController : UIViewController<UIScrollViewDelegate, ViewControllerDelegate, UIGestureRecognizerDelegate> {

@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "ViewController.h"
 
-@interface AccountViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ViewControllerDelegate>
+@interface AccountViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ViewControllerDelegate, UIGestureRecognizerDelegate>
 {
     CGFloat width;
     CGFloat height;
+    CGFloat centerX;
     
     NSArray *imgListArray;
     

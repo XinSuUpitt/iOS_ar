@@ -10,6 +10,7 @@
 #import "AccountViewController.h"
 #import "Manager.h"
 #import "ViewController.h"
+#import "HomeViewController.h"
 
 @implementation AccountViewController
 
@@ -31,6 +32,18 @@
     [self initAccountSettingsEditings];
     
     [self initCollectionView];
+    
+    UIScreenEdgePanGestureRecognizer *rightEdgeGesture = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(handleRightEdgeGesture:)];
+    rightEdgeGesture.edges = UIRectEdgeRight;
+    rightEdgeGesture.delegate = self;
+    [self.view addGestureRecognizer:rightEdgeGesture];
+    
+    centerX = self.view.bounds.size.width/2;
+    
+    UIScreenEdgePanGestureRecognizer *leftEdgeGesture = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(handleLeftEdgeGesture:)];
+    leftEdgeGesture.edges = UIRectEdgeLeft;
+    leftEdgeGesture.delegate = self;
+    [self.view addGestureRecognizer:leftEdgeGesture];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -241,6 +254,78 @@
 - (void)homePageIVTapGRTap
 {
     [self.viewCtrlDelegate gotoHomePageFromAccount];
+}
+
+#pragma mark - swipe gesture method
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
+- (void)handleRightEdgeGesture:(UIScreenEdgePanGestureRecognizer *)gesture
+{
+    CGFloat distance = 100;
+    UIView *fromView;
+    UIView *toView;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    fromView = self.view;
+    HomeViewController *homeCtrl = [self.viewCtrlDelegate getHomeCtrl];
+    toView = homeCtrl.view;
+    [fromView.superview addSubview:toView];
+    homeCtrl.view.frame = CGRectMake(screenWidth, 0, width, height);
+    
+    if (UIGestureRecognizerStateBegan == gesture.state || UIGestureRecognizerStateChanged == gesture.state) {
+        CGPoint transition = [gesture translationInView:gesture.view];
+        fromView.center = CGPointMake(centerX + transition.x, fromView.center.y);
+        toView.center = CGPointMake(centerX + transition.x + width, fromView.center.y);
+    } else {
+        CGPoint transition = [gesture translationInView:gesture.view];
+        if (centerX - fromView.center.x> distance) {
+            toView.center = CGPointMake(centerX + transition.x + width, fromView.center.y);
+            [UIView animateWithDuration:.3 animations:^{
+                fromView.center = CGPointMake(centerX-screenWidth, fromView.center.y);
+                toView.center = CGPointMake(centerX, fromView.center.y);
+            } completion:^(BOOL finished) {
+                [fromView removeFromSuperview];
+            }];
+        } else {
+            toView.center = CGPointMake(centerX + transition.x + width, fromView.center.y);
+            [UIView animateWithDuration:.3 animations:^{
+                fromView.center = CGPointMake(centerX, fromView.center.y);
+                toView.center = CGPointMake(centerX+screenWidth, fromView.center.y);
+            } completion:^(BOOL finished) {
+                [toView removeFromSuperview];
+            }];
+        }
+    }
+}
+
+- (void)handleLeftEdgeGesture:(UIScreenEdgePanGestureRecognizer *)gesture
+{
+    CGFloat distance = 100;
+    UIView *fromView;
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    [self.viewCtrlDelegate showARPageUnderView];
+    fromView = self.view;
+    if (UIGestureRecognizerStateBegan == gesture.state || UIGestureRecognizerStateChanged == gesture.state) {
+        CGPoint transition = [gesture translationInView:gesture.view];
+        fromView.center = CGPointMake(centerX + transition.x, fromView.center.y);
+    } else {
+        if (fromView.center.x - centerX > distance) {
+            [UIView animateWithDuration:.3 animations:^{
+                fromView.center = CGPointMake(centerX+screenWidth, fromView.center.y);
+            } completion:^(BOOL finished) {
+                [fromView removeFromSuperview];
+            }];
+        } else {
+            [self.viewCtrlDelegate pauseARPageUnderView];
+            [UIView animateWithDuration:.3 animations:^{
+                fromView.center = CGPointMake(centerX, fromView.center.y);
+            } completion:^(BOOL finished) {
+                nil;
+            }];
+        }
+    }
 }
 
 @end

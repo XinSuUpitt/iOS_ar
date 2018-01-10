@@ -317,6 +317,11 @@
     return self.accountCtrl;
 }
 
+- (HomeViewController*)getHomeCtrl
+{
+    return self.homeCtrl;
+}
+
 #pragma mark - swipe gesture methods
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
