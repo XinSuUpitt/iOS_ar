@@ -48,6 +48,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [self initImgListArray];
     [super viewDidAppear:YES];
 }
 
@@ -176,7 +177,8 @@
 
 - (void)initImgListArray
 {
-    imgListArray = [[NSArray alloc] initWithObjects:@"art.scnassets/user_15.jpg", @"art.scnassets/user_16.jpg", @"art.scnassets/user_17.jpg", @"art.scnassets/user_18.jpg", @"art.scnassets/user_19.jpg", @"art.scnassets/user_20.jpg", @"art.scnassets/user_21.jpg", @"art.scnassets/user_22.jpg", @"art.scnassets/user_23.jpg", @"art.scnassets/user_24.jpg", @"art.scnassets/user_25.jpg", @"art.scnassets/user_26.jpg",nil];
+    imgListArray = [[NSArray alloc] initWithObjects:@"art.scnassets/user_15.jpg", @"art.scnassets/user_16.jpg", @"art.scnassets/user_17.jpg", @"art.scnassets/user_18.jpg", @"art.scnassets/user_19.jpg", @"art.scnassets/user_20.jpg", nil];
+    
 }
 
 #pragma mark - collectionviewdelegate methods
@@ -232,12 +234,13 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *imageString = [imgListArray objectAtIndex:[indexPath row]];
+    imgListArray = nil;
     [self.viewCtrlDelegate showPaneramaFromAccount:imageString];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 12;
+    return 6;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -248,11 +251,13 @@
 #pragma mark - tap gesture method
 - (void)arPageIVTapGRTap
 {
+    imgListArray = nil;
     [self.viewCtrlDelegate backToARPageFromAccount];
 }
 
 - (void)homePageIVTapGRTap
 {
+    imgListArray = nil;
     [self.viewCtrlDelegate gotoHomePageFromAccount];
 }
 

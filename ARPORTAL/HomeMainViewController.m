@@ -29,6 +29,9 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
+    
+    [self initImgArray];
+    [self inittableImgListArray];
 }
 
 - (void)initHotView
@@ -195,6 +198,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *imageString = [imgListNameArray objectAtIndex:[indexPath row]];
+    imgListNameArray = nil;
+    imgNameArray = nil;
     [self.delegate getimageString:imageString];
 }
 

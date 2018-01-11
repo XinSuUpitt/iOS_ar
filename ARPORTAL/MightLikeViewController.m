@@ -43,6 +43,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
+    [self inittableImgListArray];
 }
 
 - (void)inittableImgListArray
@@ -103,6 +104,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *imageString = [likeImgArray objectAtIndex:[indexPath row]];
+    likeImgArray = nil;
     [self.delegate getimageString:imageString];
 }
 
