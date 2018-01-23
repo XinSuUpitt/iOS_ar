@@ -17,6 +17,7 @@
 
 @end
 
+@import FirebaseStorage;
     
 @implementation ViewController
 
@@ -29,7 +30,7 @@
     // Show statistics such as fps and timing information
     self.sceneView.showsStatistics = NO;
     
-    panameraViewImgString = @"art.scnassets/user_6.jpg";
+    panameraViewImgString = @"art.scnassets/video_race";
     
     showARScene = NO;
 }
@@ -48,6 +49,24 @@
     [self.sceneView.session runWithConfiguration:configuration];
     
     [self initUI];
+    
+    FIRStorage *storage = [FIRStorage storage];
+    FIRStorageReference *storageRef = [storage referenceForURL:@"gs://arportal-xs.appspot.com/sphere_others/user_10.jpg"];
+    NSURL *localURL = [NSURL URLWithString:@"path/to/image"];
+    
+    [storageRef dataWithMaxSize:3 * 1024 * 1024 completion:^(NSData *data, NSError *error){
+        if (error != nil) {
+            // Uh-oh, an error occurred!
+            NSLog(@"error");
+        } else {
+            // Data for "images/island.jpg" is returned
+            UIImageView *tmpUIImageView = [[UIImageView alloc] initWithFrame:CGRectMake(30, 30, 300, 150)];
+            [tmpUIImageView setImage:[UIImage imageWithData:data]];
+            //[self.view addSubview:tmpUIImageView];
+            
+            NSLog(@"data is %@", data);
+        }
+    }];
 }
 
 - (void)initUI
@@ -243,12 +262,40 @@
             sphereNode = [sphereScene.rootNode childNodeWithName:@"portal" recursively:YES];
             if (sphereNode) {
                 NSLog(@"material Node are %lu", (unsigned long)sphereNode.childNodes.count);
-                sphereNode.childNodes.firstObject.geometry.firstMaterial.diffuse.contents = panameraViewImgString;
+                //sphereNode.childNodes.firstObject.geometry.firstMaterial.diffuse.contents = panameraViewImgString;
+                SKVideoNode *videoSpriteKitNode = [[SKVideoNode alloc] initWithAVPlayer:[[AVPlayer alloc] initWithURL:[[NSBundle mainBundle] URLForResource:@"art.scnassets/video_london" withExtension:@"mp4"]]];
+                SKScene *spriteKitScene = [[SKScene alloc] initWithSize:CGSizeMake(3000, 3000)];
+                spriteKitScene.scaleMode = SKSceneScaleModeAspectFit;
+                videoSpriteKitNode.position = CGPointMake(spriteKitScene.size.width/2, spriteKitScene.size.height/2);
+                videoSpriteKitNode.size = spriteKitScene.size;
+                [spriteKitScene addChild:videoSpriteKitNode];
+                sphereNode.childNodes.firstObject.geometry.firstMaterial.diffuse.contents = spriteKitScene;
+                [videoSpriteKitNode play];
                 SCNNode *camera = self.sceneView.pointOfView;
                 SCNVector3 position = SCNVector3Make(0, MAX(hitResult.worldTransform.columns[3].y+0.5, 0) , -1);
                 sphereNode.position = [camera convertPosition:position toNode:nil];
+                sphereNode.transform = SCNMatrix4Translate(SCNMatrix4MakeRotation(-M_PI, 0, 0, 1), 0, 0.5, -1) ;
                 [self.sceneView.scene.rootNode addChildNode:sphereNode];
             }
+            
+            // with video
+//            SKVideoNode *videoSpriteKitNode = [[SKVideoNode alloc] initWithAVPlayer:[[AVPlayer alloc] initWithURL:[[NSBundle mainBundle] URLForResource:@"art.scnassets/video_puppy" withExtension:@"mp4"]]];
+//            SCNNode *videoNode = [[SCNNode alloc] init];
+//            videoNode.geometry = [SCNSphere sphereWithRadius:30];
+//
+//            SKScene *spriteKitScene = [[SKScene alloc] initWithSize:CGSizeMake(2500, 2500)];
+//            spriteKitScene.scaleMode = SKSceneScaleModeAspectFit;
+//
+//            videoSpriteKitNode.position = CGPointMake(spriteKitScene.size.width/2, spriteKitScene.size.height/2);
+//            videoSpriteKitNode.size = spriteKitScene.size;
+//
+//            [spriteKitScene addChild:videoSpriteKitNode];
+//
+//            videoNode.geometry.firstMaterial.diffuse.contents = spriteKitScene;
+//            videoNode.geometry.firstMaterial.doubleSided = YES;
+//
+//            [self.sceneView.scene.rootNode addChildNode:videoNode];
+//            [videoSpriteKitNode play];
             
         }
     }

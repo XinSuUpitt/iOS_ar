@@ -40,6 +40,10 @@
 		18C0761A2003332E00E1F1CA /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18C0760E2003332E00E1F1CA /* Lato-Light.ttf */; };
 		18C0761B2003332E00E1F1CA /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18C0760F2003332E00E1F1CA /* Lato-Bold.ttf */; };
 		18C0761C2003332E00E1F1CA /* Inconsolata-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18C076102003332E00E1F1CA /* Inconsolata-Bold.ttf */; };
+		18C0761E200DDC5600E1F1CA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18C0761D200DDC5500E1F1CA /* GoogleService-Info.plist */; };
+		1EA87810BCA20DADB1BE1583 /* libPods-ARPORTALUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FFC151DA9450C0C026A603D /* libPods-ARPORTALUITests.a */; };
+		6D069CB5D5A860EEA0190508 /* libPods-ARPORTALTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F2BDB9AD96FE59EF6D240F /* libPods-ARPORTALTests.a */; };
+		B05FAE5817D357F7E3855A6C /* libPods-ARPORTAL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8DBEAD4C4B7D132AE3D4F25 /* libPods-ARPORTAL.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		172D9436543AE4F84022A49F /* Pods-ARPORTALTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARPORTALTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARPORTALTests/Pods-ARPORTALTests.release.xcconfig"; sourceTree = "<group>"; };
 		18235A691FF86560001900AE /* ARPORTAL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARPORTAL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18235A6C1FF86560001900AE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		18235A6D1FF86560001900AE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -108,6 +113,15 @@
 		18C0760E2003332E00E1F1CA /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		18C0760F2003332E00E1F1CA /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		18C076102003332E00E1F1CA /* Inconsolata-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inconsolata-Bold.ttf"; sourceTree = "<group>"; };
+		18C0761D200DDC5500E1F1CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2C66BAFC659A75A56AB164D2 /* Pods-ARPORTAL.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARPORTAL.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARPORTAL/Pods-ARPORTAL.debug.xcconfig"; sourceTree = "<group>"; };
+		51F2BDB9AD96FE59EF6D240F /* libPods-ARPORTALTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ARPORTALTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		52FA0CDC12E54A0B7630A606 /* Pods-ARPORTAL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARPORTAL.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARPORTAL/Pods-ARPORTAL.release.xcconfig"; sourceTree = "<group>"; };
+		5FFC151DA9450C0C026A603D /* libPods-ARPORTALUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ARPORTALUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C2D38ABCBDBEAFFD896397B /* Pods-ARPORTALUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARPORTALUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARPORTALUITests/Pods-ARPORTALUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		BD170ACD1EF63519299D2FC4 /* Pods-ARPORTALTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARPORTALTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARPORTALTests/Pods-ARPORTALTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BE572A739557179FBFDB28D6 /* Pods-ARPORTALUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARPORTALUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARPORTALUITests/Pods-ARPORTALUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E8DBEAD4C4B7D132AE3D4F25 /* libPods-ARPORTAL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ARPORTAL.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B05FAE5817D357F7E3855A6C /* libPods-ARPORTAL.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D069CB5D5A860EEA0190508 /* libPods-ARPORTALTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,12 +145,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EA87810BCA20DADB1BE1583 /* libPods-ARPORTALUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16DC26E7E7DAC4CEDB4BFA7F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2C66BAFC659A75A56AB164D2 /* Pods-ARPORTAL.debug.xcconfig */,
+				52FA0CDC12E54A0B7630A606 /* Pods-ARPORTAL.release.xcconfig */,
+				BD170ACD1EF63519299D2FC4 /* Pods-ARPORTALTests.debug.xcconfig */,
+				172D9436543AE4F84022A49F /* Pods-ARPORTALTests.release.xcconfig */,
+				8C2D38ABCBDBEAFFD896397B /* Pods-ARPORTALUITests.debug.xcconfig */,
+				BE572A739557179FBFDB28D6 /* Pods-ARPORTALUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		18235A601FF86560001900AE = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +172,8 @@
 				18235A861FF86560001900AE /* ARPORTALTests */,
 				18235A911FF86560001900AE /* ARPORTALUITests */,
 				18235A6A1FF86560001900AE /* Products */,
+				16DC26E7E7DAC4CEDB4BFA7F /* Pods */,
+				8E3665B267F3C924D8865193 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -187,6 +219,7 @@
 				18235A771FF86560001900AE /* Assets.xcassets */,
 				18235A791FF86560001900AE /* LaunchScreen.storyboard */,
 				18235A7C1FF86560001900AE /* Info.plist */,
+				18C0761D200DDC5500E1F1CA /* GoogleService-Info.plist */,
 				18235A7D1FF86560001900AE /* main.m */,
 			);
 			path = ARPORTAL;
@@ -237,6 +270,16 @@
 			path = font;
 			sourceTree = "<group>";
 		};
+		8E3665B267F3C924D8865193 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E8DBEAD4C4B7D132AE3D4F25 /* libPods-ARPORTAL.a */,
+				51F2BDB9AD96FE59EF6D240F /* libPods-ARPORTALTests.a */,
+				5FFC151DA9450C0C026A603D /* libPods-ARPORTALUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -244,9 +287,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18235A971FF86560001900AE /* Build configuration list for PBXNativeTarget "ARPORTAL" */;
 			buildPhases = (
+				B9FB1AC50A4863D7B1490A34 /* [CP] Check Pods Manifest.lock */,
 				18235A651FF86560001900AE /* Sources */,
 				18235A661FF86560001900AE /* Frameworks */,
 				18235A671FF86560001900AE /* Resources */,
+				ADDD860D37544FC54D48FD0C /* [CP] Embed Pods Frameworks */,
+				356831F5FDC422113BF91D21 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -261,9 +307,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18235A9A1FF86560001900AE /* Build configuration list for PBXNativeTarget "ARPORTALTests" */;
 			buildPhases = (
+				F8DAF68FB89AF671AFEDEF7D /* [CP] Check Pods Manifest.lock */,
 				18235A7F1FF86560001900AE /* Sources */,
 				18235A801FF86560001900AE /* Frameworks */,
 				18235A811FF86560001900AE /* Resources */,
+				117D237AA3B91EEA9B32B584 /* [CP] Embed Pods Frameworks */,
+				4FBBB9A6CCB277272A1F7861 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -279,9 +328,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18235A9D1FF86560001900AE /* Build configuration list for PBXNativeTarget "ARPORTALUITests" */;
 			buildPhases = (
+				822B4E85E38EF69EF52DD03A /* [CP] Check Pods Manifest.lock */,
 				18235A8A1FF86560001900AE /* Sources */,
 				18235A8B1FF86560001900AE /* Frameworks */,
 				18235A8C1FF86560001900AE /* Resources */,
+				900E7134DCE1D47ED5D1A10C /* [CP] Embed Pods Frameworks */,
+				1E012694545020C6E8D5B78B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -362,6 +414,7 @@
 				18C075F62002EB1C00E1F1CA /* MightLikeViewController.xib in Resources */,
 				18C076172003332E00E1F1CA /* Inconsolata-Regular.ttf in Resources */,
 				18235A761FF86560001900AE /* Main.storyboard in Resources */,
+				18C0761E200DDC5600E1F1CA /* GoogleService-Info.plist in Resources */,
 				18C076142003332E00E1F1CA /* Lato-BoldItalic.ttf in Resources */,
 				18C076182003332E00E1F1CA /* Lato-Regular.ttf in Resources */,
 			);
@@ -382,6 +435,153 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		117D237AA3B91EEA9B32B584 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ARPORTALTests/Pods-ARPORTALTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1E012694545020C6E8D5B78B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ARPORTALUITests/Pods-ARPORTALUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		356831F5FDC422113BF91D21 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ARPORTAL/Pods-ARPORTAL-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4FBBB9A6CCB277272A1F7861 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ARPORTALTests/Pods-ARPORTALTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		822B4E85E38EF69EF52DD03A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ARPORTALUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		900E7134DCE1D47ED5D1A10C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ARPORTALUITests/Pods-ARPORTALUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ADDD860D37544FC54D48FD0C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ARPORTAL/Pods-ARPORTAL-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B9FB1AC50A4863D7B1490A34 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ARPORTAL-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8DAF68FB89AF671AFEDEF7D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ARPORTALTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		18235A651FF86560001900AE /* Sources */ = {
@@ -558,6 +758,7 @@
 		};
 		18235A981FF86560001900AE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2C66BAFC659A75A56AB164D2 /* Pods-ARPORTAL.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -573,6 +774,7 @@
 		};
 		18235A991FF86560001900AE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52FA0CDC12E54A0B7630A606 /* Pods-ARPORTAL.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -588,6 +790,7 @@
 		};
 		18235A9B1FF86560001900AE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD170ACD1EF63519299D2FC4 /* Pods-ARPORTALTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -603,6 +806,7 @@
 		};
 		18235A9C1FF86560001900AE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 172D9436543AE4F84022A49F /* Pods-ARPORTALTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -618,6 +822,7 @@
 		};
 		18235A9E1FF86560001900AE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C2D38ABCBDBEAFFD896397B /* Pods-ARPORTALUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PX8M9XWEX4;
@@ -632,6 +837,7 @@
 		};
 		18235A9F1FF86560001900AE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE572A739557179FBFDB28D6 /* Pods-ARPORTALUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PX8M9XWEX4;
