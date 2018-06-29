@@ -32,12 +32,14 @@
     CGFloat centerX;
     
     BOOL showARScene;
+    BOOL showVideo;
     
     //top bar
     UIImageView *homeIV;
     UIImageView *addIV;
     UIImageView *accountIV;
     UIImageView *exitIV;
+    UIImageView *refreshIV;
     
     NSArray *imgNameArray;
     NSString *panameraViewImgString;

@@ -30,7 +30,7 @@
     // Show statistics such as fps and timing information
     self.sceneView.showsStatistics = NO;
     
-    panameraViewImgString = @"art.scnassets/video_race";
+    panameraViewImgString = @"art.scnassets/07.jpg";
     
     showARScene = NO;
 }
@@ -39,6 +39,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    showVideo = NO;
     
     // Create a session configuration
     ARWorldTrackingConfiguration *configuration = [ARWorldTrackingConfiguration new];
@@ -50,23 +52,23 @@
     
     [self initUI];
     
-    FIRStorage *storage = [FIRStorage storage];
-    FIRStorageReference *storageRef = [storage referenceForURL:@"gs://arportal-xs.appspot.com/sphere_others/user_10.jpg"];
-    NSURL *localURL = [NSURL URLWithString:@"path/to/image"];
+//    FIRStorage *storage = [FIRStorage storage];
+//    FIRStorageReference *storageRef = [storage referenceForURL:@"gs://arportal-xs.appspot.com/sphere_others/user_10.jpg"];
+//    NSURL *localURL = [NSURL URLWithString:@"path/to/image"];
     
-    [storageRef dataWithMaxSize:3 * 1024 * 1024 completion:^(NSData *data, NSError *error){
-        if (error != nil) {
-            // Uh-oh, an error occurred!
-            NSLog(@"error");
-        } else {
-            // Data for "images/island.jpg" is returned
-            UIImageView *tmpUIImageView = [[UIImageView alloc] initWithFrame:CGRectMake(30, 30, 300, 150)];
-            [tmpUIImageView setImage:[UIImage imageWithData:data]];
-            //[self.view addSubview:tmpUIImageView];
-            
-            NSLog(@"data is %@", data);
-        }
-    }];
+//    [storageRef dataWithMaxSize:3 * 1024 * 1024 completion:^(NSData *data, NSError *error){
+//        if (error != nil) {
+//            // Uh-oh, an error occurred!
+//            NSLog(@"error");
+//        } else {
+//            // Data for "images/island.jpg" is returned
+//            UIImageView *tmpUIImageView = [[UIImageView alloc] initWithFrame:CGRectMake(30, 30, 300, 150)];
+//            [tmpUIImageView setImage:[UIImage imageWithData:data]];
+//            //[self.view addSubview:tmpUIImageView];
+//
+//            NSLog(@"data is %@", data);
+//        }
+//    }];
 }
 
 - (void)initUI
@@ -145,6 +147,26 @@
     vibrancyView.frame = hotImgsView.bounds;
     [blurEffectView.contentView addSubview:vibrancyView];
     [self.view addSubview:hotImgsView];
+    
+    refreshIV = [[UIImageView alloc] initWithFrame:CGRectMake(30, 100, 30, 30)];
+    [refreshIV setImage:[UIImage imageNamed:@"refresh"]];
+    [hotImgsView addSubview:refreshIV];
+    [refreshIV setTintColor:[UIColor whiteColor]];
+    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(refreshTapped)];
+    [refreshIV setUserInteractionEnabled:YES];
+    [refreshIV addGestureRecognizer:tapGR];
+}
+
+- (void)refreshTapped
+{
+    if (showVideo) {
+        [refreshIV setTintColor:[UIColor whiteColor]];
+        showVideo = NO;
+    } else {
+        [refreshIV setTintColor:[UIColor redColor]];
+        showVideo = YES;
+    }
+    
 }
 
 - (void)initHorizontalScrollView
@@ -262,20 +284,33 @@
             sphereNode = [sphereScene.rootNode childNodeWithName:@"portal" recursively:YES];
             if (sphereNode) {
                 NSLog(@"material Node are %lu", (unsigned long)sphereNode.childNodes.count);
-                //sphereNode.childNodes.firstObject.geometry.firstMaterial.diffuse.contents = panameraViewImgString;
-                SKVideoNode *videoSpriteKitNode = [[SKVideoNode alloc] initWithAVPlayer:[[AVPlayer alloc] initWithURL:[[NSBundle mainBundle] URLForResource:@"art.scnassets/video_london" withExtension:@"mp4"]]];
-                SKScene *spriteKitScene = [[SKScene alloc] initWithSize:CGSizeMake(3000, 3000)];
-                spriteKitScene.scaleMode = SKSceneScaleModeAspectFit;
-                videoSpriteKitNode.position = CGPointMake(spriteKitScene.size.width/2, spriteKitScene.size.height/2);
-                videoSpriteKitNode.size = spriteKitScene.size;
-                [spriteKitScene addChild:videoSpriteKitNode];
-                sphereNode.childNodes.firstObject.geometry.firstMaterial.diffuse.contents = spriteKitScene;
-                [videoSpriteKitNode play];
-                SCNNode *camera = self.sceneView.pointOfView;
-                SCNVector3 position = SCNVector3Make(0, MAX(hitResult.worldTransform.columns[3].y+0.5, 0) , -1);
-                sphereNode.position = [camera convertPosition:position toNode:nil];
-                sphereNode.transform = SCNMatrix4Translate(SCNMatrix4MakeRotation(-M_PI, 0, 0, 1), 0, 0.5, -1) ;
-                [self.sceneView.scene.rootNode addChildNode:sphereNode];
+                
+                if (showVideo) {
+//                    NSArray *array = [[NSArray alloc] initWithObjects:@"art.scnassets/video_puppy", @"art.scnassets/video_london", @"art.scnassets/video_race", @"art.scnassets/video_starwar", nil];
+//                    NSUInteger r = arc4random_uniform(4);
+//                    NSString *str = [array objectAtIndex:r];
+                    NSString *str = @"art.scnassets/louvre_museum";
+                    SKVideoNode *videoSpriteKitNode = [[SKVideoNode alloc] initWithAVPlayer:[[AVPlayer alloc] initWithURL:[[NSBundle mainBundle] URLForResource:str withExtension:@"mp4"]]];
+                    SKScene *spriteKitScene = [[SKScene alloc] initWithSize:CGSizeMake(3000, 3000)];
+                    spriteKitScene.scaleMode = SKSceneScaleModeAspectFit;
+                    videoSpriteKitNode.position = CGPointMake(spriteKitScene.size.width/2, spriteKitScene.size.height/2);
+                    videoSpriteKitNode.size = spriteKitScene.size;
+                    [spriteKitScene addChild:videoSpriteKitNode];
+                    sphereNode.childNodes.firstObject.geometry.firstMaterial.diffuse.contents = spriteKitScene;
+                    [videoSpriteKitNode play];
+                    SCNNode *camera = self.sceneView.pointOfView;
+                    SCNVector3 position = SCNVector3Make(0, MAX(hitResult.worldTransform.columns[3].y+0.5, 0) , -1);
+                    sphereNode.position = [camera convertPosition:position toNode:nil];
+                    sphereNode.transform = SCNMatrix4Translate(SCNMatrix4MakeRotation(-M_PI, 0, 0, 1), 0, 0.5, -1) ;
+                    [self.sceneView.scene.rootNode addChildNode:sphereNode];
+                } else {
+                    sphereNode.childNodes.firstObject.geometry.firstMaterial.diffuse.contents = panameraViewImgString;
+                    SCNNode *camera = self.sceneView.pointOfView;
+                    SCNVector3 position = SCNVector3Make(0, MAX(hitResult.worldTransform.columns[3].y+0.5, 0) , -1);
+                    sphereNode.position = [camera convertPosition:position toNode:nil];
+                    [self.sceneView.scene.rootNode addChildNode:sphereNode];
+                }
+                
             }
             
             // with video
